@@ -45,27 +45,7 @@
       </li>
 
 
-      <li class="nav-item nav-category">Settings</li>
-        <li class="nav-item @if (Route::currentRouteName() == 'admin.email-template') active @endif">
-            <a href="{{route('admin.email-template')}}" class="nav-link">
-                <i class="link-icon" data-feather="users"></i>
-                <span class="link-title">Email Templates</span>
-            </a>
-        </li>
-        <li class="nav-item @if (Route::currentRouteName() == 'admin.site-configuration') active @endif">
-            <a href="{{ route('admin.site-configuration') }}" class="nav-link">
-                <i class="link-icon" data-feather="thumbs-up"></i>
-                <span class="link-title">Configuration</span>
-            </a>
-        </li>
-
-        <li class="nav-item nav-category">Manage Profile</li>
-        <li class="nav-item @if (Route::currentRouteName() == '#') active @endif">
-                <a href="#" class="nav-link">
-                    <i class="link-icon" data-feather="edit-2"></i>
-                    <span class="link-title">Edit Profile</span>
-                </a>
-        </li>
+    
 
 
     </ul>

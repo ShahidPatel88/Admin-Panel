@@ -1,0 +1,80 @@
+<TALLYMESSAGE xmlns:UDF="TallyUDF">
+          <LEDGER NAME="name2" RESERVEDNAME="">
+            <ADDRESS.LIST TYPE="String">
+              <ADDRESS>line1, line2</ADDRESS>
+              <ADDRESS>city</ADDRESS>
+            </ADDRESS.LIST>
+            <LEDSTATENAME>Goa</LEDSTATENAME>
+            <PINCODE>403001</PINCODE>
+            <MAILINGNAME.LIST TYPE="String">
+              <MAILINGNAME>name2</MAILINGNAME>
+            </MAILINGNAME.LIST>
+            <CURRENCYNAME>₹</CURRENCYNAME>
+            <EMAIL>testvira@email.com</EMAIL>
+            <WEBSITE />
+            <INCOMETAXNUMBER>LSWI2278DF</INCOMETAXNUMBER>
+            <COUNTRYNAME>India</COUNTRYNAME>
+            <GSTREGISTRATIONTYPE>Regular</GSTREGISTRATIONTYPE>
+            <PARENT>Sundry Debtors - Viras</PARENT>
+            <NARRATION />
+            <COUNTRYOFRESIDENCE>India</COUNTRYOFRESIDENCE>
+            <EMAILCC>mysteryman@email.com</EMAILCC>
+            <LEDGERPHONE>458923</LEDGERPHONE>
+            <LEDGERCONTACT>Mystery Man</LEDGERCONTACT>
+            <LEDGERMOBILE>6598765987</LEDGERMOBILE>
+            <PARTYGSTIN>ASDF234kl56</PARTYGSTIN>
+            <GSTNATUREOFSUPPLY>SEZ</GSTNATUREOFSUPPLY>
+            <LANGUAGENAME.LIST>
+              <NAME.LIST TYPE="String">
+                <NAME>name2</NAME>
+                <NAME>new name2</NAME>
+              </NAME.LIST>
+              <LANGUAGEID>1033</LANGUAGEID>
+            </LANGUAGENAME.LIST>
+            <PAYMENTDETAILS.LIST>
+              <IFSCODE>ifsc code</IFSCODE>
+              <BANKNAME>ScamNo1</BANKNAME>
+              <ACCOUNTNUMBER>123456789</ACCOUNTNUMBER>
+              <PAYMENTFAVOURING>name2</PAYMENTFAVOURING>
+              <TRANSACTIONNAME>E-Payment</TRANSACTIONNAME>
+              <SETASDEFAULT>No</SETASDEFAULT>
+              <DEFAULTTRANSACTIONTYPE>Inter Bank Transfer</DEFAULTTRANSACTIONTYPE>
+              <BENEFICIARYCODEDETAILS.LIST />
+            </PAYMENTDETAILS.LIST>
+            <LEDMULTIADDRESSLIST.LIST>
+              <ADDRESS.LIST TYPE="String">
+                <ADDRESS>Door No 1</ADDRESS>
+                <ADDRESS>Road No 1</ADDRESS>
+                <ADDRESS>Semmedu</ADDRESS>
+              </ADDRESS.LIST>
+              <EMAIL />
+              <STATE>Tamil Nadu</STATE>
+              <PINCODE>641114</PINCODE>
+              <INCOMETAXNUMBER>LSWI2278DF</INCOMETAXNUMBER>
+              <COUNTRYNAME>India</COUNTRYNAME>
+              <GSTREGISTRATIONTYPE>Regular</GSTREGISTRATIONTYPE>
+              <ADDRESSNAME>City Office</ADDRESSNAME>
+              <PARTYGSTIN>ASDF234kl56</PARTYGSTIN>
+              <CONTACTPERSON>maverick</CONTACTPERSON>
+              <ISOTHTERRITORYASSESSEE>No</ISOTHTERRITORYASSESSEE>
+            </LEDMULTIADDRESSLIST.LIST>
+            <LEDMULTIADDRESSLIST.LIST>
+              <ADDRESS.LIST TYPE="String">
+                <ADDRESS>Door No 1</ADDRESS>
+                <ADDRESS>Road No 1</ADDRESS>
+                <ADDRESS>Semmedu</ADDRESS>
+              </ADDRESS.LIST>
+              <EMAIL />
+              <STATE>Tamil Nadu</STATE>
+              <PINCODE>641114</PINCODE>
+              <INCOMETAXNUMBER>LSWI2278DF</INCOMETAXNUMBER>
+              <COUNTRYNAME>India</COUNTRYNAME>
+              <GSTREGISTRATIONTYPE>Regular</GSTREGISTRATIONTYPE>
+              <ADDRESSNAME>Godown</ADDRESSNAME>
+              <PARTYGSTIN>ASDF234kl56</PARTYGSTIN>
+              <CONTACTPERSON>maverick</CONTACTPERSON>
+              <ISOTHTERRITORYASSESSEE>No</ISOTHTERRITORYASSESSEE>
+            </LEDMULTIADDRESSLIST.LIST>
+          </LEDGER>
+        </TALLYMESSAGE>
+      </REQUESTDATA>

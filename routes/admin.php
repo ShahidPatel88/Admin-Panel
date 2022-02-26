@@ -43,5 +43,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('ledger-account-details', [TallyController::class, 'getLedgerAccountList'])->name('getLedgerAccountLists');
     Route::post('store-ledger-account', [TallyController::class, 'addLedgerAccount'])->name('storeLedgerAccount');
 
+    //Import Invoice
+    Route::get('invoice',[TallyController::class, 'addInvoice'])->name('getInvoice');
+    Route::post('import-invoice',[TallyController::class, 'importInvoice'])->name('importInvoice');
+
 });
 

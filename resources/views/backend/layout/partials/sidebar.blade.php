@@ -31,6 +31,12 @@
           <span class="link-title">Add Group & Items</span>
         </a>
       </li>
+      <li class="nav-item @if (Route::currentRouteName() == 'admin.getInvoice') active @endif">
+        <a href="{{ route('admin.getInvoice') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Add Invoice</span>
+        </a>
+      </li>
       <li class="nav-item @if (Route::currentRouteName() == 'admin.getLedgerAccountLists') active @endif">
         <a href="{{ route('admin.getLedgerAccountLists') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
@@ -45,7 +51,7 @@
       </li>
 
 
-    
+
 
 
     </ul>

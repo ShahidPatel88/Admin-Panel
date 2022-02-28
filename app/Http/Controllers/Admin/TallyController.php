@@ -276,7 +276,7 @@ $url = "http://localhost:9000/";
         
         $company_name=$request['company_name'];
         $bill_to=$request['bill_to'];
-        $leadger=$request['ledger_name'];
+        $leadger=$request['ledger_name']; m
         $amount=$request['amount'];
         $total=$request['total'];
         $remote_id=rand(0, 99999999);

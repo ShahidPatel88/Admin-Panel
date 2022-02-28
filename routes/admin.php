@@ -45,7 +45,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     //Import Invoice
     Route::get('invoice',[TallyController::class, 'addInvoice'])->name('getInvoice');
-    Route::post('import-invoice',[TallyController::class, 'importInvoice'])->name('importInvoice');
+    Route::post('import-invoice',[TallyController::class, 'storeInvoice'])->name('importInvoice');
 
 });
 

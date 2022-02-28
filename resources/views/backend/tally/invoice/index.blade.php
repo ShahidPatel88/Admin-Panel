@@ -19,13 +19,36 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-control-label">Company Name: <span class="tx-danger">*</span></label>
-                                        <input type="file" class="form-control" placeholder="Enter Group Name" name="group_name" data-validation="required" value="Aaaa">
+                                        <input type="text" class="form-control" placeholder="Enter Company Name" name="company_name" data-validation="required" value="Aaaa" readonly>
+                                    </div>
+                                </div>
+                                 <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Bill To: <span class="tx-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Enter Bill To " name="bill_to" data-validation="required" value="Cash" readonly>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-control-label">Ledger Name: <span class="tx-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Enter Item Name" name="item_name" data-validation="required">
+                                        <select class="form-control" name="ledger_name">
+                                            <option value="">Select Ledger</option>
+                                            <option value="INNOVIUS">INNOVIUS</option>
+                                            <option value="INNOVIUS SOFTWARE">INNOVIUS SOFTWARE</option>
+                                            <option value="LOREM IPSUM">LOREM IPSUM</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Amount: <span class="tx-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Enter Amount" name="amount" data-validation="required">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Total: <span class="tx-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Enter Total" name="total" data-validation="required">
                                     </div>
                                 </div>
                                 <div class="form-layout-footer">

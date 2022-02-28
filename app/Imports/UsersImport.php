@@ -26,19 +26,37 @@ class UsersImport implements ToModel,  WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
 
     */
+    private $data;
 
+    public function __construct(){
+        $this->data = [];
+    }
     public function model(array $rows)
     {
+        // dd($rows);
+        //     $data=[];
+        //     foreach($rows as $key=> $row){
+        //         dd($key);
 
-            $company_name=$rows['companyname'];
-            $bill_to=$rows['bill_to'];
-            $leadger=$rows['ledger'];
-            $amount=$rows['amount'];
-            $total=$rows['total'];
+        //     }
+        //     dd($data);
+
+            return [
+                'companyname'=>$rows['companyname'] ?? '',
+                'bill_to'=>$rows['bill_to'] ?? '',
+                'leadger'=>$rows['ledger'],
+                'amount'=>$rows['amount'] ?? '',
+                'total'=>$rows['total']
+            ];
+            // $company_name='aaa';
+            // $bill_to=$rows['bill_to'];
+            // $leadger=$rows['ledger'];
+            // $amount=$rows['amount'];
+            // $total=$rows['total'];
             $remote_id=rand(0, 99999999);
             $date= date('Ymd');
             $voucher_number= rand(0, 9);
-            // dd($company_name,$bill_to,$leadger,$amount,$total,$remote_id,$date);
+
             $res_str =<<<XML
                     <ENVELOPE>
                     <HEADER>
@@ -59,6 +77,7 @@ class UsersImport implements ToModel,  WithHeadingRow
                         <OLDAUDITENTRYIDS>-1</OLDAUDITENTRYIDS>
                         </OLDAUDITENTRYIDS.LIST>
                         <DATE>20210401</DATE>
+                        20220228
                         <GUID>7c9224c0-13d8-4cbe-a2a9-83bc98b4ca6f-00000006</GUID>
                         <VOUCHERTYPENAME>Payment</VOUCHERTYPENAME>
                         <VOUCHERNUMBER>6</VOUCHERNUMBER>
@@ -207,7 +226,7 @@ class UsersImport implements ToModel,  WithHeadingRow
 
                     XML;
 
-                    return $res_str;
+            //         return $res_str;
     }
 
 }

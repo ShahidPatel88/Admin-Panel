@@ -261,13 +261,27 @@ $url = "http://localhost:9000/";
     }
 
 
-    public function importInvoice(Request $request){
-        $path = $request->file('group_name');
+    public function storeInvoice(Request $request){
+        $dd= $this->importInvoice($request->all());
+        // $dd=Excel::import(new UsersImport,$path);
+        // $path = $request->file('group_name');
+        if($dd != false){
+            return redirect()->route('admin.getInvoice')->with('success', 'Invoice Created in tally.');
+        }else{
+            return redirect()->route('admin.getInvoice')->with('error', 'Data Not Added in tally');
+        }
+    }
 
-
-        $dd=Excel::import(new UsersImport,$path);
-        dd($dd);
-
+    function importInvoice($request){
+        
+        $company_name=$request['company_name'];
+        $bill_to=$request['bill_to'];
+        $leadger=$request['ledger_name'];
+        $amount=$request['amount'];
+        $total=$request['total'];
+        $remote_id=rand(0, 99999999);
+        $date= (int)date('Ymd');
+        $voucher_number= rand(0, 9);
         $res_str =<<<XML
         <ENVELOPE>
         <HEADER>
@@ -283,16 +297,15 @@ $url = "http://localhost:9000/";
         </REQUESTDESC>
         <REQUESTDATA>
             <TALLYMESSAGE xmlns:UDF="TallyUDF">
-            <VOUCHER REMOTEID='remote id 2' VCHKEY='25636997-4ba8-bbe7-9cc74518a9c5-0000a748:00000000' VCHTYPE='Receipt' ACTION='Create' OBJVIEW='Accounting Voucher View'>
+            <VOUCHER REMOTEID="{$remote_id}" VCHKEY="7c9224c0-13d8-4cbe-a2a9-83bc98b4ca6f-0000acfe:00000030" VCHTYPE="Payment" ACTION="Create" OBJVIEW="Accounting Voucher View">
             <OLDAUDITENTRYIDS.LIST TYPE="Number">
             <OLDAUDITENTRYIDS>-1</OLDAUDITENTRYIDS>
             </OLDAUDITENTRYIDS.LIST>
             <DATE>20210401</DATE>
-            <GUID>remote id</GUID>
-            <NARRATION>aaaa</NARRATION>
+            <GUID>7c9224c0-13d8-4cbe-a2a9-83bc98b4ca6f-00000006</GUID>
             <VOUCHERTYPENAME>Payment</VOUCHERTYPENAME>
-            <VOUCHERNUMBER>5</VOUCHERNUMBER>
-            <PARTYLEDGERNAME>Cash</PARTYLEDGERNAME>
+            <VOUCHERNUMBER>6</VOUCHERNUMBER>
+            <PARTYLEDGERNAME>{$bill_to}</PARTYLEDGERNAME>
             <CSTFORMISSUETYPE/>
             <CSTFORMRECVTYPE/>
             <FBTPAYMENTTYPE>Default</FBTPAYMENTTYPE>
@@ -345,9 +358,9 @@ $url = "http://localhost:9000/";
             <ORDERLINESTATUS>No</ORDERLINESTATUS>
             <ISDELETED>No</ISDELETED>
             <CHANGEVCHMODE>No</CHANGEVCHMODE>
-            <ALTERID> 1</ALTERID>
-            <MASTERID> 1</MASTERID>
-            <VOUCHERKEY>190206921670672</VOUCHERKEY>
+            <ALTERID> 19</ALTERID>
+            <MASTERID> 6</MASTERID>
+            <VOUCHERKEY>{$voucher_number}</VOUCHERKEY>
             <EXCLUDEDTAXATIONS.LIST>      </EXCLUDEDTAXATIONS.LIST>
             <OLDAUDITENTRIES.LIST>      </OLDAUDITENTRIES.LIST>
             <ACCOUNTAUDITENTRIES.LIST>      </ACCOUNTAUDITENTRIES.LIST>
@@ -364,47 +377,14 @@ $url = "http://localhost:9000/";
             <OLDAUDITENTRYIDS.LIST TYPE="Number">
                 <OLDAUDITENTRYIDS>-1</OLDAUDITENTRYIDS>
             </OLDAUDITENTRYIDS.LIST>
-            <LEDGERNAME>ABC</LEDGERNAME>
+            <LEDGERNAME>{$leadger}</LEDGERNAME>
             <GSTCLASS/>
             <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
             <LEDGERFROMITEM>No</LEDGERFROMITEM>
             <REMOVEZEROENTRIES>No</REMOVEZEROENTRIES>
             <ISPARTYLEDGER>No</ISPARTYLEDGER>
             <ISLASTDEEMEDPOSITIVE>Yes</ISLASTDEEMEDPOSITIVE>
-            <AMOUNT>-5000.00</AMOUNT>
-            <SERVICETAXDETAILS.LIST>       </SERVICETAXDETAILS.LIST>
-            <BANKALLOCATIONS.LIST>       </BANKALLOCATIONS.LIST>
-            <BILLALLOCATIONS.LIST>       </BILLALLOCATIONS.LIST>
-            <INTERESTCOLLECTION.LIST>       </INTERESTCOLLECTION.LIST>
-            <OLDAUDITENTRIES.LIST>       </OLDAUDITENTRIES.LIST>
-            <ACCOUNTAUDITENTRIES.LIST>       </ACCOUNTAUDITENTRIES.LIST>
-            <AUDITENTRIES.LIST>       </AUDITENTRIES.LIST>
-            <INPUTCRALLOCS.LIST>       </INPUTCRALLOCS.LIST>
-            <DUTYHEADDETAILS.LIST>       </DUTYHEADDETAILS.LIST>
-            <EXCISEDUTYHEADDETAILS.LIST>       </EXCISEDUTYHEADDETAILS.LIST>
-            <SUMMARYALLOCS.LIST>       </SUMMARYALLOCS.LIST>
-            <STPYMTDETAILS.LIST>       </STPYMTDETAILS.LIST>
-            <EXCISEPAYMENTALLOCATIONS.LIST>       </EXCISEPAYMENTALLOCATIONS.LIST>
-            <TAXBILLALLOCATIONS.LIST>       </TAXBILLALLOCATIONS.LIST>
-            <TAXOBJECTALLOCATIONS.LIST>       </TAXOBJECTALLOCATIONS.LIST>
-            <TDSEXPENSEALLOCATIONS.LIST>       </TDSEXPENSEALLOCATIONS.LIST>
-            <VATSTATUTORYDETAILS.LIST>       </VATSTATUTORYDETAILS.LIST>
-            <COSTTRACKALLOCATIONS.LIST>       </COSTTRACKALLOCATIONS.LIST>
-            <REFVOUCHERDETAILS.LIST>       </REFVOUCHERDETAILS.LIST>
-            <INVOICEWISEDETAILS.LIST>       </INVOICEWISEDETAILS.LIST>
-            </ALLLEDGERENTRIES.LIST>
-            <ALLLEDGERENTRIES.LIST>
-            <OLDAUDITENTRYIDS.LIST TYPE="Number">
-                <OLDAUDITENTRYIDS>-1</OLDAUDITENTRYIDS>
-            </OLDAUDITENTRYIDS.LIST>
-            <LEDGERNAME>NEW LEDGER ACCOUNT</LEDGERNAME>
-            <GSTCLASS/>
-            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
-            <LEDGERFROMITEM>No</LEDGERFROMITEM>
-            <REMOVEZEROENTRIES>No</REMOVEZEROENTRIES>
-            <ISPARTYLEDGER>No</ISPARTYLEDGER>
-            <ISLASTDEEMEDPOSITIVE>Yes</ISLASTDEEMEDPOSITIVE>
-            <AMOUNT>-5000.00</AMOUNT>
+            <AMOUNT>-{$amount}</AMOUNT>
             <SERVICETAXDETAILS.LIST>       </SERVICETAXDETAILS.LIST>
             <BANKALLOCATIONS.LIST>       </BANKALLOCATIONS.LIST>
             <BILLALLOCATIONS.LIST>       </BILLALLOCATIONS.LIST>
@@ -437,7 +417,7 @@ $url = "http://localhost:9000/";
             <REMOVEZEROENTRIES>No</REMOVEZEROENTRIES>
             <ISPARTYLEDGER>Yes</ISPARTYLEDGER>
             <ISLASTDEEMEDPOSITIVE>No</ISLASTDEEMEDPOSITIVE>
-            <AMOUNT>10000.00</AMOUNT>
+            <AMOUNT>{$total}</AMOUNT>
             <SERVICETAXDETAILS.LIST>       </SERVICETAXDETAILS.LIST>
             <BANKALLOCATIONS.LIST>       </BANKALLOCATIONS.LIST>
             <BILLALLOCATIONS.LIST>       </BILLALLOCATIONS.LIST>
@@ -467,24 +447,30 @@ $url = "http://localhost:9000/";
         </IMPORTDATA>
         </BODY>
         </ENVELOPE>
-
         XML;
+
         $url = "http://localhost:9000/";
 
         //setting the curl parameters.
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-// Following line is compulsary to add as it is:
+        // Following line is compulsary to add as it is:
         curl_setopt($ch, CURLOPT_POSTFIELDS,
-                    "xmlRequest=" . $res_str);
+                "xmlRequest=" . $res_str);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
         $data = curl_exec($ch);
-
-
+        
+        if(curl_errno($ch)){
+            var_dump($data);
+            $msg=false;
+        } else {
+            $msg = $data;
+        }
         curl_close($ch);
-		// get the xml object
+        // get the xml object
         $object = simplexml_load_string( $data );
-        return $object;
+
+        return $msg;
     }
 }

@@ -11,7 +11,23 @@
                 <div class="card">
                     <div class="card-body">
                         @include('backend.layout.partials.flash_messages')
-
+                        <form method="POST" action="{{ route('admin.excelImportInvoice') }}" accept-charset="UTF-8"
+                              class="form-horizontal" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mg-b-25">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Excel: <span class="tx-danger">*</span></label>
+                                        <input type="file" class="form-control" name="excel_file" data-validation="required">
+                                    </div>
+                                </div>
+                                <div class="form-layout-footer">
+                                    <button type="submit" class="btn btn-primary bd-0">Import</button>
+                                    <a href="{{ route('admin.email-template') }}" class="btn btn-secondary bd-0">Cancel</a>
+                                </div>
+                            </div>
+                        </form>    
+                        <div class="pt-5"></div>
                         <form method="POST" action="{{ route('admin.importInvoice') }}" accept-charset="UTF-8"
                               class="form-horizontal" enctype="multipart/form-data">
                             @csrf
@@ -19,7 +35,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="form-control-label">Company Name: <span class="tx-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Enter Company Name" name="company_name" data-validation="required" value="Aaaa" readonly>
+                                        <input type="text" class="form-control" placeholder="Enter Company Name" name="company_name" data-validation="required" value="Patel Family" readonly>
                                     </div>
                                 </div>
                                  <div class="col-12">
@@ -33,9 +49,7 @@
                                         <label class="form-control-label">Ledger Name: <span class="tx-danger">*</span></label>
                                         <select class="form-control" name="ledger_name">
                                             <option value="">Select Ledger</option>
-                                            <option value="INNOVIUS">INNOVIUS</option>
-                                            <option value="INNOVIUS SOFTWARE">INNOVIUS SOFTWARE</option>
-                                            <option value="LOREM IPSUM">LOREM IPSUM</option>
+                                            <option value="Shahid Patel">Shahid Patel</option>
                                         </select>
                                     </div>
                                 </div>

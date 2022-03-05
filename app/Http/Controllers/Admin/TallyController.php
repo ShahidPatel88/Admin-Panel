@@ -272,11 +272,17 @@ $url = "http://localhost:9000/";
         }
     }
 
+    public function excelImport(Request $request){
+        
+        Excel::import(new UsersImport(), $request->file('excel_file')->store('temp'));
+        return redirect()->route('admin.getInvoice')->with('success', 'Import Successfully in tally.');
+    }
+
     function importInvoice($request){
         
         $company_name=$request['company_name'];
         $bill_to=$request['bill_to'];
-        $leadger=$request['ledger_name']; m
+        $leadger=$request['ledger_name']; 
         $amount=$request['amount'];
         $total=$request['total'];
         $remote_id=rand(0, 99999999);
@@ -292,7 +298,7 @@ $url = "http://localhost:9000/";
         <REQUESTDESC>
             <REPORTNAME>Vouchers</REPORTNAME>
             <STATICVARIABLES>
-            <SVCURRENTCOMPANY>Aaaaa</SVCURRENTCOMPANY>
+            <SVCURRENTCOMPANY>Patel Family</SVCURRENTCOMPANY>
             </STATICVARIABLES>
         </REQUESTDESC>
         <REQUESTDATA>
@@ -460,7 +466,7 @@ $url = "http://localhost:9000/";
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
         $data = curl_exec($ch);
-        
+        dd($data);
         if(curl_errno($ch)){
             var_dump($data);
             $msg=false;

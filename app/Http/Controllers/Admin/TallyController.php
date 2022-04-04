@@ -230,26 +230,26 @@ class TallyController extends Controller
                 </DESC>
             </BODY>
         </ENVELOPE>
-XML;
+        XML;
 
-$url = "http://localhost:9000/";
+            $url = "http://localhost:9000/";
 
-        //setting the curl parameters.
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-// Following line is compulsary to add as it is:
-        curl_setopt($ch, CURLOPT_POSTFIELDS,
-                    "xmlRequest=" . $res_str);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-        $data = curl_exec($ch);
-		//echo '<pre>';
-		//var_dump($data);die;
+            //setting the curl parameters.
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+             // Following line is compulsary to add as it is:
+            curl_setopt($ch, CURLOPT_POSTFIELDS,
+                        "xmlRequest=" . $res_str);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+            $data = curl_exec($ch);
+            //echo '<pre>';
+            //var_dump($data);die;
 
-        curl_close($ch);
-		// get the xml object
-        $object = simplexml_load_string( $data );
-        return $object;
+            curl_close($ch);
+            // get the xml object
+            $object = simplexml_load_string( $data );
+            return $object;
     }
 
     public function addInvoice(){
@@ -478,5 +478,76 @@ $url = "http://localhost:9000/";
         $object = simplexml_load_string( $data );
 
         return $msg;
+    }
+
+    public function getCompanyList(){
+        $data= $this->getCompanyListData();
+        $json = json_encode($data);
+        $company_data = array_values(json_decode($json,TRUE));
+
+        return view('backend.tally.company.index',compact('company_data'));
+    }
+
+    function getCompanyListData(){
+        $res_str =<<<XML
+        <ENVELOPE>
+            <HEADER>
+                <VERSION>1</VERSION>
+                <TALLYREQUEST>Export</TALLYREQUEST>
+                <TYPE>Data</TYPE>
+                <ID>List of Companies</ID>
+            </HEADER>
+            <BODY>
+                <DESC>
+                <TDL>
+                    <TDLMESSAGE>
+                    <REPORT NAME="List of Companies" ISMODIFY="No" ISFIXED="No" ISINITIALIZE="No" ISOPTION="No" ISINTERNAL="No">
+                        <FORMS>List of Companies</FORMS>
+                    </REPORT>
+                    <FORM NAME="List of Companies" ISMODIFY="No" ISFIXED="No" ISINITIALIZE="No" ISOPTION="No" ISINTERNAL="No">
+                        <TOPPARTS>List of Companies</TOPPARTS>
+                        <XMLTAG>"List of Companies"</XMLTAG>
+                    </FORM>
+                    <PART NAME="List of Companies" ISMODIFY="No" ISFIXED="No" ISINITIALIZE="No" ISOPTION="No" ISINTERNAL="No">
+                        <TOPLINES>List of Companies</TOPLINES>
+                        <REPEAT>List of Companies : Collection of Companies</REPEAT>
+                        <SCROLLED>Vertical</SCROLLED>
+                    </PART>
+                    <LINE NAME="List of Companies" ISMODIFY="No" ISFIXED="No" ISINITIALIZE="No" ISOPTION="No" ISINTERNAL="No">
+                        <LEFTFIELDS>List of Companies</LEFTFIELDS>
+                    </LINE>
+                    <FIELD NAME="List of Companies" ISMODIFY="No" ISFIXED="No" ISINITIALIZE="No" ISOPTION="No" ISINTERNAL="No">
+                        <SET>\$Name</SET>
+                        <XMLTAG>"NAME"</XMLTAG>
+                    </FIELD>
+
+                    <COLLECTION NAME="Collection of Companies" ISMODIFY="No" ISFIXED="No" ISINITIALIZE="No" ISOPTION="No" ISINTERNAL="No">
+                        <TYPE>Company</TYPE>
+                    </COLLECTION>
+                    </TDLMESSAGE>
+                </TDL>
+                </DESC>
+            </BODY>
+        </ENVELOPE>
+        XML;
+
+            $url = "http://localhost:9000/";
+
+            //setting the curl parameters.
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+             // Following line is compulsary to add as it is:
+            curl_setopt($ch, CURLOPT_POSTFIELDS,
+                        "xmlRequest=" . $res_str);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+            $data = curl_exec($ch);
+            //echo '<pre>';
+            //var_dump($data);die;
+
+            curl_close($ch);
+            // get the xml object
+            $object = simplexml_load_string( $data );
+            return $object;
     }
 }

@@ -48,5 +48,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('import-invoice',[TallyController::class, 'storeInvoice'])->name('importInvoice');
     Route::post('excel-import-invoice',[TallyController::class, 'excelImport'])->name('excelImportInvoice');
 
+    //Company
+    Route::get('all-companies', [TallyController::class, 'getCompanyList'])->name('getCompanyList');
+
 });
 
